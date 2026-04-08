@@ -7,11 +7,6 @@
 - générer sa clé API depuis le site
 - installer les packages :
 
-> Install-Package -Name 'MimeKit' -Source "https://www.nuget.org/api/v2" skipDependencies
-> Install-Package -Name 'MailKit' -Source "https://www.nuget.org/api/v2"
+> Install-Module -Name "Send-MailKitMessage"
 
-- trouver le chemin de "MimeKit.dll" et "MailKit.dll", souvent dans :
-
-> C:\Program Files\PackageManagement\NuGet\Packages\(MimeKit ou MailKit)\lib\netstandard2.0\leFichierDllQuilFaut.dll
-
-- renseigner les infos nécessaires dans l'exe de setup (mail, clé API PWPush, chemin du dll)
+- renseigner les infos nécessaires dans l'exe de setup (mail, clé API PWPush)
