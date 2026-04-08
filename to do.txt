@@ -1,4 +1,7 @@
-intégrer le secret dans la textbox directement dans la query vers PWPush
--mettre un script qui permet de créer le credentiel.json 
+-intégrer le secret dans la textbox directement dans la query vers PWPush                                   // FAIT
+-développer un UI pour le script/module sendMail.ps1                                                        // fait par défaut ??
+-compléter l'intégration outlook
+-compléter l'intégration teams
+-mettre un script qui permet de créer le credentiel.json et l'autre json pour la fonction sendMail
 -convertir le tout en .exe ou je sais pas quel executable qui marche bien
 -voir pour créer un certificat virtuel pour le code histoire de pas avoir de soucis avec le domaine ?

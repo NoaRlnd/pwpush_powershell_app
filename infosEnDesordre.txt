@@ -1,2 +1,5 @@
-packages à installer :
-jsp
+dédicace à ITconnect pour mailkit,
+ce site pour le format md : (https://markdownguide.offshoot.io/basic-syntax/),
+akril.net pour le tuto windows form de qualité (les autres sont nuls) (https://akril.net/creer-une-windows-form-en-powershell/)
+
+Install-Module -Name "Send-MailKitMessage"
