@@ -45,12 +45,12 @@ $timer.Interval = 60000  # 60 secondes
 $lblSecret = New-Object System.Windows.Forms.Label
 $lblSecret.Text = "Secret à envoyer :"
 $lblSecret.Location = New-Object System.Drawing.Point(10,20)
-$lblSecret.Size = New-Object System.Drawing.Size(105,20)
+$lblSecret.Size = New-Object System.Drawing.Size(130,20)
 $Form.Controls.Add($lblSecret)
 
 # bouton paramètres
 $btnSettings = New-Object System.Windows.Forms.Button
-$btnSettings.Location = New-Object System.Drawing.Point(130,15)
+$btnSettings.Location = New-Object System.Drawing.Point(150,15)
 $btnSettings.Size = New-Object System.Drawing.Size(30,30)
 $btnSettings.Image = [System.Drawing.Image]::FromFile($visuelsSTTGSpath)
 $Form.Controls.Add($btnSettings)
