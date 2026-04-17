@@ -33,5 +33,14 @@ $credExist = Test-Path -Path $credentielJSONpath
 
 
 if ($canWork.steps -ge 2) {
+    $secretClear = ""
+    $dataClear = @{
+        "expire_after_duration" = 0
+        "expire_after_views" = 1
+        "passphrase" = ""
+        "note" = "envoi depuis application PWPusherGUI"
+    }
+    $secretClear | ConvertTo-Json | Set-Content -Encoding utf8 -Path $secretJSONpath
+    $dataClear | ConvertTo-Json | Set-Content -Encoding utf8 -Path $dataJSONpath
     & $mainScriptPath
 }

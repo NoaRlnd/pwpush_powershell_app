@@ -4,6 +4,7 @@ Add-Type -AssemblyName System.Drawing
 $currentPath = $PSScriptRoot
 $basePath = Split-Path -Path $PSScriptRoot
 $dataJSONpath = Join-Path $basePath "\data\data.json"
+$secretJSONpath = Join-Path $basePath "\data\secret.json"
 
 $contentData = Get-Content -Raw -Path $dataJSONpath | ConvertFrom-Json
 
@@ -35,7 +36,7 @@ $chkPassphrase = New-Object System.Windows.Forms.CheckBox
 $chkPassphrase.Text = "Ajout d'une passphrase"
 $chkPassphrase.Location = New-Object System.Drawing.Point(10,20)
 $chkPassphrase.Size = New-Object System.Drawing.Size(190,20)
-$chkPassphrase.Checked = if ($contentData.passphrase -ne "") {$true} else {$false}
+$chkPassphrase.Checked = if (($contentData.passphrase -ne "") -and ($contentData.passphrase -ne $null)) {$true} else {$false}
 $Form.Controls.Add($chkPassphrase)
 
 # label Passphrase
@@ -152,8 +153,22 @@ $btnAPIkey.Add_Click({
     }
 })
 
+# logique bouton reset
+$btnReset.Add_Click({
+    $secretClear = ""
+    $dataClear = @{
+        "expire_after_duration" = 0
+        "expire_after_views" = 1
+        "passphrase" = ""
+        "note" = "envoi depuis application PWPusherGUI"
+    }
+    $secretClear | ConvertTo-Json | Set-Content -Encoding utf8 -Path $secretJSONpath
+    $dataClear | ConvertTo-Json | Set-Content -Encoding utf8 -Path $dataJSONpath
+})
+
 # logique bouton valider
 $btnValider.Add_Click({
+    $contentData = Get-Content -Raw -Path $dataJSONpath | ConvertFrom-Json
     $contentData.expire_after_views = $tbVues.Value
     $contentData.expire_after_duration = $tbTime.Value
     if ($chkPassphrase.Checked -eq $false) {

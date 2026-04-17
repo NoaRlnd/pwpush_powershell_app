@@ -59,6 +59,7 @@ $Form.Controls.Add($btnSettings)
 $txtSecret = New-Object System.Windows.Forms.TextBox
 $txtSecret.Location = New-Object System.Drawing.Point(10,50)
 $txtSecret.Size = New-Object System.Drawing.Size(450,20)
+$txtSecret.Text = ""
 $Form.Controls.Add($txtSecret)
 
 # bouton Générer
@@ -105,21 +106,26 @@ $btnSettings.Add_Click({
 
 #logique du bouton générer
 $btnGenerate.Add_Click({
-    $btnGenerate.Enabled = $false
-    $txtSecret.Enabled = $false
-    $txtSecret.Text | ConvertTo-Json | Set-Content -Encoding utf8 -Path $secretJSONpath
-    if ($txtResult.Text -eq "") {
-        & $pushPath
-        $lien = Get-Content -Raw -Path $dataJSONpath | ConvertFrom-Json
-        $txtResult.Text = $lien.html_url
+    if ($txtSecret.Text -eq "") {
+        [System.Windows.Forms.MessageBox]::Show("veuillez renseigner votre contenu secret avant de cliquer")
     }
     else {
-        $txtResult.Text = ""
-        & $pushPath
-        $lien = Get-Content -Raw -Path $dataJSONpath | ConvertFrom-Json
-        $txtResult.Text = $lien.html_url
+        $btnGenerate.Enabled = $false
+        $txtSecret.Enabled = $false
+        $txtSecret.Text | ConvertTo-Json | Set-Content -Encoding utf8 -Path $secretJSONpath
+        if ($txtResult.Text -eq "") {
+            & $pushPath
+            $lien = Get-Content -Raw -Path $dataJSONpath | ConvertFrom-Json
+            $txtResult.Text = $lien.html_url
+        }
+        else {
+            $txtResult.Text = ""
+            & $pushPath
+            $lien = Get-Content -Raw -Path $dataJSONpath | ConvertFrom-Json
+            $txtResult.Text = $lien.html_url
+        }
+        $timer.Start()
     }
-    $timer.Start()
 })
 
 # logique de la checkmark du bouton copier

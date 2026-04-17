@@ -1,4 +1,4 @@
 {
-  "boot": true,
-  "steps": 8
+  "boot": false,
+  "steps": 0
 }

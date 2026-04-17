@@ -1,17 +1,12 @@
 $currentPath = $PSScriptRoot
 $basePath = Split-Path -Path $PSScriptRoot
 $dataJSONpath = Join-Path $basePath "\backup\backupdata.json"
-$tbVues = 3
-$tbJours = 4
-$txtPassphrase.Text = "test en cours"
 
-$contentJSON = Get-Content -Raw -Path $dataJSONpath | ConvertFrom-Json
-$contentJSON.expire_after_views = $tbVues.Value
-$contentJSON.expire_after_days = $tbJours.Value
-if ($txtPassphrase.Text = "") {
-    $contentJSON.passphrase = $null
+$txtTest = "pet"
+
+if ($txtTest -ne "") {
+    write-host "la condition se fait"
 }
 else {
-    $contentJSON.passphrase = $txtPassphrase.Text
+    Write-Host "la condi fait pas"
 }
-$contentJSON | ConvertTo-Json | Set-Content -Encoding utf8 -Path $dataJSONpath
